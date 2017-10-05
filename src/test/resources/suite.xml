@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DenmarkWebsiteTests" parallel="false" verbose="1">
+    <test name="verifyThatUserGetsTicketWithPassportDataTest">
+        <parameter name="FROM" value="København H"/>
+        <parameter name="TO" value="Aarhus H"/>
+        <parameter name="DATE" value="31"/>
+        <parameter name="TIME" value="11:00"/>
+        <parameter name="RESULTPAGETITLE" value="Results page (en)"/>
+        <parameter name="DELIVERYINFORMATION" value="Delivery information"/>
+        <parameter name="EMAIL" value="mail@google.com"/>
+        <parameter name="CONFIRMEMAIL" value="mail@google.com"/>
+        <parameter name="TYPEOFID" value="Passport"/>
+        <parameter name="FOURDIGITS" value="1234"/>
+        <parameter name="TRAVELLERSNAME" value="John Smith"/>
+        <parameter name="PAYMENTPAGETITLE" value="Payment"/>
+        <classes>
+            <class name="com.epam.dsb.dk.test.MainTest"/>
+        </classes>
+    </test>
+</suite>
