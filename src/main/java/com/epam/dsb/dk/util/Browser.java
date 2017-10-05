@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -46,8 +46,11 @@ public class Browser {
                 driver = new FirefoxDriver();
                 break;
             case "IEXPLORE":
+                InternetExplorerOptions options = new InternetExplorerOptions();
+                options.ignoreZoomSettings();
+                options.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
                 System.setProperty("webdriver.ie.driver", "src/test/resources/IEDriverServer.exe");
-                driver = new InternetExplorerDriver();
+                driver = new InternetExplorerDriver(options);
                 break;
             default:
                 try {

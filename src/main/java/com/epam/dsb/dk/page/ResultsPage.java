@@ -15,7 +15,7 @@ public class ResultsPage extends BasePage {
     }
 
     public Boolean isOutboundTrainExist(){
-        return findElements(OUTBOUNDS_LOCATOR).size()!=0;
+        return findElements(OUTBOUNDS_LOCATOR).size()>0;
     }
 
     public ResultsPage clickOntheFirstTrain(){

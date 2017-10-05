@@ -98,6 +98,12 @@ public abstract class BasePage {
         unHighlightElement(locator);
     }
 
+    public void takeHighlightScreenshot(By locator){
+        highlightElement(locator);
+        takeScreenshot();
+        unHighlightElement(locator);
+    }
+
     public void highlightElement(By locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", driver.findElement(locator));
     }

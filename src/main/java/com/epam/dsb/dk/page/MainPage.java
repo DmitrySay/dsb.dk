@@ -15,7 +15,7 @@ public class MainPage extends BasePage {
     private static final String FROM_WINDOW_LOCATOR_PATTERN = "//ul[@id='react-autosuggest-DepartLocation']//span[text()='%s']";
     private static final String TO_WINDOW_LOCATOR_PATTERN = "//ul[@id='react-autosuggest-ArriveLocation']//span[text()='%s']";
     private static final By TIME_WINDOW_LOCATOR = By.id("SearchTime");
-
+    private static final String TIME_WINDOW_LOCATOR_PATTERN = "//ul[@id='react-autosuggest-SearchTime']//strong[text()='%s']";
     private static final By NUMBER_TRAVELLERS_LOCATOR = By.id("Passengers4");
     private static final By NUMBER_TRAVELLERS_ADULTS_PLUS_LOCATOR = By.xpath("//a[@id='PassengersAdults' AND @class='counter__increase']");
     private static final By SEAT_RESERVATIONS_LOCATOR = By.id("SeatReservations1");
@@ -37,9 +37,7 @@ public class MainPage extends BasePage {
         WebElement el = driver.findElement(By.xpath(String.format(FROM_WINDOW_LOCATOR_PATTERN, station)));
         LOG.info("Select station '" + station + "'");
         new Actions(driver).moveToElement(el).click().perform();
-        highlightElement(FROM_WINDOW_LOCATOR);
-        takeScreenshot();
-        unHighlightElement(FROM_WINDOW_LOCATOR);
+        takeHighlightScreenshot(FROM_WINDOW_LOCATOR);
         return this;
     }
 
@@ -50,9 +48,7 @@ public class MainPage extends BasePage {
         WebElement el = driver.findElement(By.xpath(String.format(TO_WINDOW_LOCATOR_PATTERN, station)));
         LOG.info("Select station '" + station + "'");
         new Actions(driver).moveToElement(el).click().perform();
-        highlightElement(TO_WINDOW_LOCATOR);
-        takeScreenshot();
-        unHighlightElement(TO_WINDOW_LOCATOR);
+        takeHighlightScreenshot(TO_WINDOW_LOCATOR);
         return this;
     }
 
@@ -66,8 +62,13 @@ public class MainPage extends BasePage {
 
     public MainPage fillTimeWindow(String time) {
         LOG.info("Fill 'TIME' window");
-        type(TIME_WINDOW_LOCATOR, time);
-        driver.findElement(FIND_JOURNEY_AND_PRICE_LOCATOR).click();
+        waitForElementVisible(TIME_WINDOW_LOCATOR);
+        driver.findElement(TIME_WINDOW_LOCATOR).click();
+        driver.findElement(TIME_WINDOW_LOCATOR).clear();
+        driver.findElement(TIME_WINDOW_LOCATOR).sendKeys(time);
+        WebElement el = driver.findElement(By.xpath(String.format(TIME_WINDOW_LOCATOR_PATTERN, time)));
+        new Actions(driver).moveToElement(el).click().perform();
+        takeHighlightScreenshot(TIME_WINDOW_LOCATOR);
         return this;
     }
 
