@@ -77,4 +77,5 @@ public class MainPage extends BasePage {
         submit(SEARCH_JOURNEY_BTN_LOCATOR);
         return new ResultsPage();
     }
+
 }

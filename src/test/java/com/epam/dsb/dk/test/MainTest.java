@@ -27,6 +27,7 @@ public class MainTest extends BaseTest {
                         .clickOnSearchJourneyBtn();
         Assert.assertEquals(resultsPage.getPageTitle(), RESULTPAGETITLE, "Title is not as expected");
         Assert.assertTrue(resultsPage.isOutboundTrainExist(), "No train/s on the page");
+
         DeliveryIPage deliveryIPage =
                 resultsPage
                         .clickOntheFirstTrain()
