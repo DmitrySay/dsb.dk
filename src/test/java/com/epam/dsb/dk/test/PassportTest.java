@@ -1,13 +1,11 @@
 package com.epam.dsb.dk.test;
 
 import com.epam.dsb.dk.page.DeliveryIPage;
-import com.epam.dsb.dk.page.MainPage;
 import com.epam.dsb.dk.page.PaymentPage;
 import com.epam.dsb.dk.page.ResultsPage;
-import com.epam.dsb.dk.test.bo.Journey;
-import com.epam.dsb.dk.test.service.JourneyService;
+import com.epam.dsb.dk.bo.Journey;
+import com.epam.dsb.dk.service.JourneyService;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class PassportTest extends BaseTest {

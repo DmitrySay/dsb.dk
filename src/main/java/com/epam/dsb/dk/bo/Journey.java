@@ -1,4 +1,4 @@
-package com.epam.dsb.dk.test.bo;
+package com.epam.dsb.dk.bo;
 
 public class Journey {
 

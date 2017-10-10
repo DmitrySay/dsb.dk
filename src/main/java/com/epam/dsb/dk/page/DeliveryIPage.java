@@ -1,10 +1,12 @@
 package com.epam.dsb.dk.page;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 public class DeliveryIPage extends BasePage {
+    private static final Logger LOG = Logger.getLogger(DeliveryIPage.class);
     private static final By DP_CONTINUE_BTN_LOCATOR = By.xpath("//button[@type='submit'][text()='Continue']");
     private static final By YOUR_EMAIL_WINDOW_LOCATOR = By.id("EmailAddress");
     private static final By CONFIRM_YOUR_EMAIL_WINDOW_LOCATOR = By.id("ConfirmEmailAddress");

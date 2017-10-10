@@ -1,8 +1,10 @@
 package com.epam.dsb.dk.page;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 public class ResultsPage extends BasePage {
+    private static final Logger LOG = Logger.getLogger(ResultsPage.class);
     private static final By LOGO_LOCATOR = By.xpath("//a[text()='DSB']");
     private static final By AD_RETURN_JOURNEY_LOCATOR = By.xpath("//div[@id='add-journey']//span[2]");
     private static final By OUTBOUNDS_LOCATOR = By.xpath("//div[@id='search-results']//div[contains(@id, 'outBound')]");

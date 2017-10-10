@@ -1,9 +1,10 @@
 package com.epam.dsb.dk.page;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 public class PaymentPage extends BasePage {
-
+    private static final Logger LOG = Logger.getLogger(PaymentPage.class);
     public static final By PAYMENT_TITLE_LOCATOR =By.xpath("//h1[@class='main-title']");
 
     public PaymentPage() {

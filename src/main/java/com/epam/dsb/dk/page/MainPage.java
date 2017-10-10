@@ -1,10 +1,12 @@
 package com.epam.dsb.dk.page;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class MainPage extends BasePage {
+    private static final Logger LOG = Logger.getLogger(MainPage.class);
     public static final String URL = "https://www.dsb.dk/en";
     private static final By FIND_JOURNEY_AND_PRICE_LOCATOR = By.xpath("//h1[text()='Find journey and price']");
     private static final By FROM_WINDOW_LOCATOR = By.id("DepartLocation1");

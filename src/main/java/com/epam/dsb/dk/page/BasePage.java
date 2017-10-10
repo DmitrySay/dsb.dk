@@ -15,12 +15,13 @@ import java.util.List;
 
 public abstract class BasePage {
     protected WebDriver driver;
-    protected static final Logger LOG = Logger.getLogger(BasePage.class);
+    private static final Logger LOG = Logger.getLogger(BasePage.class);
     private static final int WAIT_ELEMENT_TIMEOUT = 10;
     private static final String SCREENSHOTS_NAME_TPL = "target/screenshots/scr";
 
 
     protected BasePage() {
+        LOG.info("Access to 'BasePage.class'");
         this.driver = Browser.getInstance();
     }
 
@@ -39,10 +40,11 @@ public abstract class BasePage {
     protected void waitForAjaxProcessed() {
         new WebDriverWait(driver, WAIT_ELEMENT_TIMEOUT).until(isAjaxFinished());
     }
-    private ExpectedCondition<Boolean> isAjaxFinished (){
+
+    private ExpectedCondition<Boolean> isAjaxFinished() {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
-                return(Boolean)((JavascriptExecutor)driver).executeScript("return jQuery.active == 0");
+                return (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
             }
         };
     }
@@ -52,17 +54,17 @@ public abstract class BasePage {
         highlightElement(locator);
         takeScreenshot();
         unHighlightElement(locator);
-        WebElement element =driver.findElement(locator);
+        WebElement element = driver.findElement(locator);
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
 
-    public String getPageTitle(){
-        LOG.info("Page title is '" + driver.getTitle()+"'");
+    public String getPageTitle() {
+        LOG.info("Page title is '" + driver.getTitle() + "'");
         return driver.getTitle();
     }
 
-    public List<WebElement> findElements(By locator){
+    public List<WebElement> findElements(By locator) {
         highlightElement(locator);
         takeScreenshot();
         unHighlightElement(locator);
@@ -98,7 +100,7 @@ public abstract class BasePage {
         unHighlightElement(locator);
     }
 
-    public void takeHighlightScreenshot(By locator){
+    public void takeHighlightScreenshot(By locator) {
         highlightElement(locator);
         takeScreenshot();
         unHighlightElement(locator);

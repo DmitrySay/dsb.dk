@@ -1,8 +1,8 @@
-package com.epam.dsb.dk.test.service;
+package com.epam.dsb.dk.service;
 
 import com.epam.dsb.dk.page.MainPage;
 import com.epam.dsb.dk.page.ResultsPage;
-import com.epam.dsb.dk.test.bo.Journey;
+import com.epam.dsb.dk.bo.Journey;
 
 public class JourneyService {
 
