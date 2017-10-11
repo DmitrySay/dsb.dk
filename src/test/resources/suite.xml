@@ -5,7 +5,7 @@
         <parameter name="FROM" value="København H"/>
         <parameter name="TO" value="Aarhus H"/>
         <parameter name="DATE" value="30"/>
-        <parameter name="TIME" value="12:00"/>
+        <parameter name="TIME" value="10:00"/>
         <parameter name="RESULTPAGETITLE" value="Results page (en)"/>
         <parameter name="DELIVERYINFORMATION" value="Delivery information"/>
         <parameter name="EMAIL" value="mail@google.com"/>
