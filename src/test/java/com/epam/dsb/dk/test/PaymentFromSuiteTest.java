@@ -8,10 +8,13 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class MainTest extends BaseTest {
+public class PaymentFromSuiteTest extends BaseTest {
 
     @Parameters({"FROM", "TO", "DATE", "TIME", "RESULTPAGETITLE", "DELIVERYINFORMATION",
             "EMAIL", "CONFIRMEMAIL", "TYPEOFID", "FOURDIGITS", "TRAVELLERSNAME", "PAYMENTPAGETITLE"})
+
+
+
     @Test(description = "EPMFARMATS-641")
     public void verifyThatUserGetsTicketWithPassportDataTest(
             String FROM, String TO, String DATE, String TIME,

@@ -15,7 +15,7 @@
         <parameter name="TRAVELLERSNAME" value="John Smith"/>
         <parameter name="PAYMENTPAGETITLE" value="Payment"/>
         <classes>
-            <class name="com.epam.dsb.dk.test.MainTest"/>
+            <class name="com.epam.dsb.dk.test.PaymentFromSuiteTest"/>
         </classes>
     </test>
 </suite>
