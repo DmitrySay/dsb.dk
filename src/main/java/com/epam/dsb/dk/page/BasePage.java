@@ -11,22 +11,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public abstract class BasePage {
     protected WebDriver driver;
     private static final Logger LOG = Logger.getLogger(BasePage.class);
     private static final int WAIT_ELEMENT_TIMEOUT = 10;
-    private static final String SCREENSHOTS_NAME_TPL = "target/screenshots/scr";
+    private static final String SCREENSHOTS_NAME_TPL = "target/screenshots/scr_";
 
 
     protected BasePage() {
         LOG.info("Access to 'BasePage.class'");
         this.driver = Browser.getInstance();
-    }
-
-    protected boolean isElementPresent(By locator) {
-        return !driver.findElements(locator).isEmpty();
     }
 
     protected void waitForElementVisible(By locator) {
@@ -37,23 +36,9 @@ public abstract class BasePage {
         new WebDriverWait(driver, WAIT_ELEMENT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    protected void waitForAjaxProcessed() {
-        new WebDriverWait(driver, WAIT_ELEMENT_TIMEOUT).until(isAjaxFinished());
-    }
-
-    private ExpectedCondition<Boolean> isAjaxFinished() {
-        return new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
-            }
-        };
-    }
-
     public void selectByVisibleText(By locator, String text) {
         waitForElementEnabled(locator);
-        highlightElement(locator);
-        takeScreenshot();
-        unHighlightElement(locator);
+        takeHighlightScreenshot(locator);
         WebElement element = driver.findElement(locator);
         Select select = new Select(element);
         select.selectByVisibleText(text);
@@ -74,19 +59,15 @@ public abstract class BasePage {
 
     public void submit(final By locator) {
         waitForElementVisible(locator);
-        LOG.info("Submitting '" + driver.findElement(locator).getText() + "' (Located: " + locator + ")");
-        highlightElement(locator);
-        takeScreenshot();
-        unHighlightElement(locator);
+        LOG.info("Submitting element'" + driver.findElement(locator).getText() + "' (Located: " + locator + ")");
+        takeHighlightScreenshot(locator);
         driver.findElement(locator).submit();
     }
 
     public void click(final By locator) {
         waitForElementVisible(locator);
         LOG.info("Clicking element '" + driver.findElement(locator).getText() + "' (Located: " + locator + ")");
-        highlightElement(locator);
-        takeScreenshot();
-        unHighlightElement(locator);
+        takeHighlightScreenshot(locator);
         driver.findElement(locator).click();
     }
 
@@ -114,11 +95,22 @@ public abstract class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='0px'", driver.findElement(locator));
     }
 
+    public void waitMilliseconds(int time) {
+        try {
+            Thread.sleep(time);
+            LOG.info(String.format("Waiting ... = %s milliseconds", time));
+        } catch (Exception e) {
+            LOG.info(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public void takeScreenshot() {
         WebDriver driver = Browser.getInstance();
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
+            DateFormat dateFormat = new SimpleDateFormat("dd_MMMMM_yyyy_HH_mm_ss_SS");
+            String screenshotName = SCREENSHOTS_NAME_TPL + dateFormat.format(new Date());
             File copy = new File(screenshotName + ".png");
             FileUtils.copyFile(screenshot, copy);
             LOG.info("Saved screenshot: " + screenshotName);

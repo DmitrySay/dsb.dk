@@ -35,7 +35,7 @@ public class MainPage extends BasePage {
     public MainPage fillFromWindow(String station) {
         LOG.info("Fill 'FROM' window");
         waitForElementVisible(FROM_WINDOW_LOCATOR);
-        driver.findElement(FROM_WINDOW_LOCATOR).click();
+        click(FROM_WINDOW_LOCATOR);
         WebElement el = driver.findElement(By.xpath(String.format(FROM_WINDOW_LOCATOR_PATTERN, station)));
         LOG.info("Select station '" + station + "'");
         new Actions(driver).moveToElement(el).click().perform();
@@ -46,7 +46,7 @@ public class MainPage extends BasePage {
     public MainPage fillToWindow(String station) {
         LOG.info("Fill 'TO' window");
         waitForElementVisible(TO_WINDOW_LOCATOR);
-        driver.findElement(TO_WINDOW_LOCATOR).click();
+        click(TO_WINDOW_LOCATOR);
         WebElement el = driver.findElement(By.xpath(String.format(TO_WINDOW_LOCATOR_PATTERN, station)));
         LOG.info("Select station '" + station + "'");
         new Actions(driver).moveToElement(el).click().perform();
@@ -63,21 +63,14 @@ public class MainPage extends BasePage {
     }
 
     public MainPage fillTimeWindow(String time) {
-        try {
-            LOG.info("Fill 'TIME' window");
-            waitForElementVisible(TIME_WINDOW_LOCATOR);
-            driver.findElement(TIME_WINDOW_LOCATOR).click();
-            Thread.sleep(900);
-            driver.findElement(TIME_WINDOW_LOCATOR).clear();
-            Thread.sleep(900);
-            driver.findElement(TIME_WINDOW_LOCATOR).sendKeys(time);
-            Thread.sleep(900);
-            WebElement el = driver.findElement(By.xpath(String.format(TIME_WINDOW_LOCATOR_PATTERN, time)));
-            new Actions(driver).moveToElement(el).click().perform();
-            takeHighlightScreenshot(TIME_WINDOW_LOCATOR);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        LOG.info("Fill 'TIME' window");
+        click(TIME_WINDOW_LOCATOR);
+        waitMilliseconds(250);
+        driver.findElement(TIME_WINDOW_LOCATOR).clear();
+        driver.findElement(TIME_WINDOW_LOCATOR).sendKeys(time);
+        WebElement el = driver.findElement(By.xpath(String.format(TIME_WINDOW_LOCATOR_PATTERN, time)));
+        new Actions(driver).moveToElement(el).click().perform();
+        takeHighlightScreenshot(TIME_WINDOW_LOCATOR);
         return this;
     }
 
