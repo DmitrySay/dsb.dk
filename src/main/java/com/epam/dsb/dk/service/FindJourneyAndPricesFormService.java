@@ -4,9 +4,9 @@ import com.epam.dsb.dk.page.MainPage;
 import com.epam.dsb.dk.page.ResultsPage;
 import com.epam.dsb.dk.bo.Journey;
 
-public class JourneyService {
+public class FindJourneyAndPricesFormService {
 
-    public ResultsPage sendJourney(Journey journey) {
+    public ResultsPage sendJourneyToFindJourneyAndPricesForm(Journey journey) {
         MainPage mainPage = new MainPage().open();
         ResultsPage resultsPage =
                 mainPage.fillFromWindow(journey.getFrom())

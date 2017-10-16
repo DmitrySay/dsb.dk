@@ -4,7 +4,7 @@ import com.epam.dsb.dk.page.DeliveryIPage;
 import com.epam.dsb.dk.page.PaymentPage;
 import com.epam.dsb.dk.page.ResultsPage;
 import com.epam.dsb.dk.bo.Journey;
-import com.epam.dsb.dk.service.JourneyService;
+import com.epam.dsb.dk.service.FindJourneyAndPricesFormService;
 import com.epam.dsb.dk.util.ApachePOIExcelReader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -29,7 +29,7 @@ public class PaymentFromExcelTest extends BaseTest {
 
     @Test(description = "EPMFARMATS-641")
     public void verifyThatUserGetsTicketWithPassportDataTest( ) {
-        ResultsPage resultsPage = new JourneyService().sendJourney(journey);
+        ResultsPage resultsPage = new FindJourneyAndPricesFormService().sendJourneyToFindJourneyAndPricesForm(journey);
 
         Assert.assertEquals(resultsPage.getPageTitle(), "Results page (en)", "Title is not as expected");
         Assert.assertTrue(resultsPage.isOutboundTrainExist(), "No train/s on the page");
